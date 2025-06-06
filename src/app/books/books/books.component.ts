@@ -1,0 +1,25 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectBooks, selectBooksLoading } from '../store/books.selectors';
+import { loadBooks } from '../store/books.actions';
+
+@Component({
+  standalone: true,
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.css'],
+  imports: [CommonModule],
+})
+export class BooksComponent implements OnInit {
+  books$ = this.store.select(selectBooks);
+  loading$ = this.store.select(selectBooksLoading);
+
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {}
+
+  load() {
+    this.store.dispatch(loadBooks());
+  }
+}

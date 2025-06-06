@@ -1,0 +1,7 @@
+<button (click)="load()">Cargar libros</button>
+<div *ngIf="loading$ | async">Cargando...</div>
+<ul>
+  <li *ngFor="let book of books$ | async">
+    {{ book.title }} - {{ book.author }}
+  </li>
+</ul>
