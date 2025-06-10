@@ -11,4 +11,17 @@ export const loadBooksFailure = createAction(
   props<{ error: string }>()
 );
 
-//min 9 https://www.youtube.com/watch?v=fiT5ng5wgrk&list=PL_WGMLcL4jzVkzMox4UxGcsBLvFurCDax&index=3&ab_channel=LeiferMendez
+export const addBooks = createAction(
+  '[Books] Add Book Success',
+  props<{ book: Book }>()
+);
+
+export const deleteBooks = createAction(
+  '[Books] Delete Book Success',
+  props<{ id: string | number }>()
+);
+
+export const editBooks = createAction(
+  '[Books] Edit Book Success',
+  props<{ book: Book }>()
+);

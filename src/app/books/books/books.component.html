@@ -2,6 +2,9 @@
 <div *ngIf="loading$ | async">Cargando...</div>
 <ul>
   <li *ngFor="let book of books$ | async">
-    {{ book.title }} - {{ book.author }}
+    <p>{{ book.title }} - {{ book.author }}</p>
+    <button (click)="delete(book.id)">Eliminar</button>
   </li>
 </ul>
+<hr />
+<app-addBook />

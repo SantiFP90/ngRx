@@ -27,5 +27,17 @@ export const booksReducer = createReducer(
     ...state,
     error,
     loading: false,
+  })),
+  on(BookActions.addBooks, (state, { book }) => ({
+    ...state,
+    books: [...state.books, book],
+  })),
+  on(BookActions.deleteBooks, (state, { id }) => ({
+    ...state,
+    books: state.books.filter((book) => book.id !== id),
+  })),
+  on(BookActions.editBooks, (state, { book }) => ({
+    ...state,
+    books: state.books.filter((bookFind) => (bookFind = book)),
   }))
 );
