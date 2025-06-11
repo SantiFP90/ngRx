@@ -4,6 +4,7 @@
   <li *ngFor="let book of books$ | async">
     <p>{{ book.title }} - {{ book.author }}</p>
     <button (click)="delete(book.id)">Eliminar</button>
+    <button (click)="edit(book)">Editar</button>
   </li>
 </ul>
 <hr />

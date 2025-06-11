@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectBooks, selectBooksLoading } from '../store/books.selectors';
-import { loadBooks, addBooks, deleteBooks } from '../store/books.actions';
+import { loadBooks, startEditBooks, deleteBooks } from '../store/books.actions';
 import { FormsModule } from '@angular/forms';
 import { Book } from '../store/models/books.model';
 import { AddBookComponent } from './components/add.book/add.book.component';
@@ -28,5 +28,9 @@ export class BooksComponent implements OnInit {
 
   delete(id: string | number) {
     this.store.dispatch(deleteBooks({ id }));
+  }
+
+  edit(book: Book) {
+    this.store.dispatch(startEditBooks({ book }));
   }
 }

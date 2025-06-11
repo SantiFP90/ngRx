@@ -11,3 +11,13 @@ export const selectBooksLoading = createSelector(
   selectBooksState,
   (state) => state.loading
 );
+
+export const selectSelectedBook = createSelector(
+  selectBooksState,
+  (state) => state.selectBook
+);
+
+export const selectIsEditing = createSelector(
+  selectBooksState,
+  (state) => state.isEdit
+);

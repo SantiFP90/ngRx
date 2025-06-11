@@ -1,6 +1,11 @@
-<h3>Añadir Libro</h3>
-<form (ngSubmit)="add()">
+<h3>{{ (isEditing$ | async) ? "Editar Libro" : "Nuevo Libro" }}</h3>
+<form (ngSubmit)="isEditing$ ? edit() : add()">
   <input [(ngModel)]="title" name="title" placeholder="Título" />
   <input [(ngModel)]="author" name="author" placeholder="Autor" />
-  <button type="submit">Añadir</button>
+  <button type="submit">
+    {{ (isEditing$ | async) ? "Actualizar" : "Agregar" }}
+  </button>
+  <button type="button" *ngIf="isEditing$ | async" (click)="cancel()">
+    Cancelar
+  </button>
 </form>

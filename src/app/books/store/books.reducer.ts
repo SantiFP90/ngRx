@@ -7,12 +7,16 @@ export interface BooksState {
   books: Book[];
   loading: boolean;
   error: string | null;
+  selectBook: Book | null;
+  isEdit: boolean;
 }
 
 export const initialState: BooksState = {
   books: [],
   loading: false,
   error: null,
+  selectBook: null,
+  isEdit: false,
 };
 
 export const booksReducer = createReducer(
@@ -36,8 +40,20 @@ export const booksReducer = createReducer(
     ...state,
     books: state.books.filter((book) => book.id !== id),
   })),
+  on(BookActions.startEditBooks, (state, { book }) => ({
+    ...state,
+    selectBook: book,
+    isEdit: true,
+  })),
   on(BookActions.editBooks, (state, { book }) => ({
     ...state,
-    books: state.books.filter((bookFind) => (bookFind = book)),
+    books: state.books.map((b) => (b.id === book.id ? book : b)),
+    selectBook: null,
+    isEdit: false,
+  })),
+  on(BookActions.finishEditBooks, (state) => ({
+    ...state,
+    selectBook: null,
+    isEdit: false,
   }))
 );
